@@ -1,0 +1,45 @@
+import printer
+import task
+import queue
+import random
+
+def simulation(num_seconds, pages_per_second):
+  lab_printer = printer.Printer(pages_per_second)
+  print_queue = queue.Queue()
+  waiting_times = []
+ 
+  for current_second in range(num_seconds):
+    if new_print_task():
+      _task = task.Task(current_second)
+      print_queue.enqueue(_task)
+
+    if (not lab_printer.busy()) and (not print_queue.is_empty()):
+      next_task = print_queue.dequeue()
+      waiting_times.append(next_task.wait_time(current_second))
+      lab_printer.start_next(next_task)
+
+    lab_printer.tick()
+
+  average_wait = sum(waiting_times) / len(waiting_times)
+  print('Average wait %6.2f secs %3d task remaining.' %(average_wait, print_queue.size()))
+
+def new_print_task():
+  num = random.randrange(1, 181)
+  if num == 180:
+    return True
+  else: 
+    return False
+
+def main():
+  for i in range(10):
+    simulation(3600, 10)
+
+if __name__ == '__main__':
+  main()
+  
+
+
+
+
+
+
