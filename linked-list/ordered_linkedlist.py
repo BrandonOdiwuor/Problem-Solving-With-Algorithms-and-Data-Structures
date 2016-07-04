@@ -25,15 +25,27 @@ class OrderedLinkedList:
     self.size = 0
 
   def __len__(self):
-    '''Returns the number of items in the linked list.'''
+    '''
+    Returns the number of items in the linked list.
+
+    Time Complexity: O(1)
+    '''
     return self.size
 
   def is_empty(self):
-    '''Returns True if the list is empty.'''
+    '''
+    Returns a boolean indicating if the list is empty.
+
+    Time Complexity: O(1)
+    '''
     return self.size == 0
 
   def add(self, item):
-    '''Adds a new Item to the list while maintaing the order.'''
+    '''
+    Adds a new Item to the list while maintaing the order.
+
+    Time Complexity: O(N)
+    '''
     current = self.head
     previous = None
     stop = False
@@ -55,20 +67,24 @@ class OrderedLinkedList:
       self.size = self.size + 1
 
   def search(self, item):
-    '''Searches for an item within the sinlgly linked list. 
-      Returns True if the item is found.
+    '''
+    Returns a boolean indicating if an item is present in a list.
+
+    Time Complexity: O(N)
     '''
     current_node = self.head
     found = False
     while not(found) and current_node != None:
       if current_node.get_data() == item:
         found = True
-      current_node = current_node.get_next() 
+      current_node = current_node.get_next()
     return found
 
   def remove(self, item):
-    '''Removes and returns an item from the linked list.
-      Returns False if item is not found.
+    '''
+    Removes and returns an item from the linked list.
+
+    Time Complexity: O(N)
     '''
     current_node = self.head
     previous_node = None
@@ -77,14 +93,16 @@ class OrderedLinkedList:
       if current_node.get_data() == item:
         previous_node.set_next(current_node.get_next())
         item_found = item
-        self.size = self.size - 1	
-      previous_node = current_node	
+        self.size = self.size - 1
+      previous_node = current_node
       current_node = current_node.get_next()
     return item_found
 
 
   def __str__(self):
-    '''Used to print the list.'''
+    '''
+    Used to print the list.
+    '''
     linkedlist_string = '['
     current_node = self.head
     while current_node != None:
@@ -93,22 +111,27 @@ class OrderedLinkedList:
       else:
         linkedlist_string = linkedlist_string + ' , ' + repr(current_node.get_data())
       current_node = current_node.get_next()
-    linkedlist_string = linkedlist_string + ']'	
+    linkedlist_string = linkedlist_string + ']'
     return linkedlist_string
 
   def __getitem__(self, key):
-    ''' Alows indexing'''
+    '''
+    Allows indexing of the list.
+
+    Time Complexity: O(N)
+    '''
     current_node = self.head
     for i in range(key):
       current_node = current_node.get_next()
     return current_node.get_data()
 
   def __setitem__(self, key, value):
-    ''' Allows indexing assignment'''
+    '''
+    Allows index assignment
+
+    Time Complexity: O(N)
+    '''
     current_node = self.head
     for i in range(key):
       current_node = current_node.get_next()
     current_node.set_data(value)
-      
-
-
