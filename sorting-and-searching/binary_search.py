@@ -1,12 +1,14 @@
-def binary_search(a_list, item, first, last):
+def binary_search(a_list, item, first=0, last=None):
   '''
   Returns a boolean indicating if the item is in a list
 
   Time Complexity O(log n)
   '''
+  last = last or len(a_list)
+
   midpoint = (first + last) // 2
 
-  if len(a_list) == 0:
+  if first > last:
     return False
   else:
     if a_list[midpoint] == item:
@@ -18,11 +20,9 @@ def binary_search(a_list, item, first, last):
   	    return binary_search(a_list, item, midpoint + 1, last)
 
 def test():
-  lst = [2, 4, 6, 8, 13, 15, 17, 20, 25, 40]
-  assert binary_search(lst, 15, 0, len(lst) - 1) == True
-  #assert binary_search(lst, 7) == False
+  lst = [1, 2, 8, 13, 17, 19, 32, 42]
+  assert binary_search(lst, 13) == True
+  assert binary_search(lst, 0) == False
   return 'Test Pass'
 
-print(test())  
-
-  
+print(test())
