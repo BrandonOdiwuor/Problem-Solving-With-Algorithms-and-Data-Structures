@@ -17,6 +17,6 @@ def test():
 
   assert(sequential_search([1, 4, 5, 7, 3, 9, 12], 3)) == True
   assert(sequential_search([2, 4, 1, 6, 9, 3, 25], 5)) == False
-  return 'Test pass'
+  return 'Test Pass'
 
 print(test())
